@@ -8,6 +8,7 @@ def setGeoInfo(ip):
     info = requests.get(url)
     data = info.json()
     ip = IpInfo
+    ip.ip = data["query"]
     ip.business = data["as"]
     ip.city = data["city"]
     ip.country = data["country"]
@@ -26,7 +27,7 @@ def setGeoInfo(ip):
 
 
 def printFindings(ip):
-    print("Company: \t"+ip.business+"\n"+
+    print("IP: \t\t"+ip.ip+"\nCompany: \t"+ip.business+"\n"+
         "City: \t\t"+ip.city+"\n"+
         "Country: \t"+ip.country+ " ["+ip.countryCd+"]\n"+
         "ISP: \t\t"+ip.isp+"\n"+
@@ -57,7 +58,7 @@ if __name__ == '__main__':
     printFindings(data)
     if related == 'y':
         shodanInfo(data.org)
- 
-    
+
+
 
 print("If banned visit http://ip-api.com/docs/unban")
